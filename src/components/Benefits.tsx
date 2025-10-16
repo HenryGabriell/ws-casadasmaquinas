@@ -1,6 +1,8 @@
 import { CheckCircle, Truck, HeadphonesIcon, DollarSign } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Benefits = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollReveal();
   const benefits = [
     {
       icon: CheckCircle,
@@ -27,7 +29,7 @@ const Benefits = () => {
   return (
     <section id="diferenciais" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+        <div ref={titleRef} className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Por Que Escolher a W.S?
           </h2>
@@ -39,11 +41,13 @@ const Benefits = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
+            const { ref, isVisible } = useScrollReveal();
             return (
               <div
                 key={index}
-                className="text-center animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                ref={ref}
+                className={`text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4">
                   <Icon className="w-8 h-8 text-primary-foreground" />

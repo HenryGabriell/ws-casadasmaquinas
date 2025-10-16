@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -15,6 +16,12 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollReveal();
+  const { ref: formRef, isVisible: formVisible } = useScrollReveal();
+  const { ref: info1Ref, isVisible: info1Visible } = useScrollReveal();
+  const { ref: info2Ref, isVisible: info2Visible } = useScrollReveal();
+  const { ref: info3Ref, isVisible: info3Visible } = useScrollReveal();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,7 +58,7 @@ const Contact = () => {
   return (
     <section id="contato" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+        <div ref={titleRef} className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Entre em Contato
           </h2>
@@ -62,7 +69,7 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="lg:col-span-2">
-            <Card className="animate-fade-in">
+            <Card ref={formRef} className={`transition-all duration-700 ${formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <CardHeader>
                 <CardTitle>Solicite um Orçamento</CardTitle>
                 <CardDescription>
@@ -123,7 +130,7 @@ const Contact = () => {
           </div>
 
           <div className="space-y-6">
-            <Card className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <Card ref={info1Ref} className={`transition-all duration-700 delay-100 ${info1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <CardContent className="pt-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
@@ -137,7 +144,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <Card ref={info2Ref} className={`transition-all duration-700 delay-200 ${info2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <CardContent className="pt-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
@@ -151,7 +158,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            <Card ref={info3Ref} className={`transition-all duration-700 delay-300 ${info3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <CardContent className="pt-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">

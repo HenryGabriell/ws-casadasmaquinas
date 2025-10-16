@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Zap, Wrench } from "lucide-react";
 import electricImage from "@/assets/machine-electric-new.png";
 import manualImage from "@/assets/machine-manual.png";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Products = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollReveal();
+  const { ref: card1Ref, isVisible: card1Visible } = useScrollReveal();
+  const { ref: card2Ref, isVisible: card2Visible } = useScrollReveal();
   const scrollToContact = () => {
     const element = document.getElementById("contato");
     if (element) {
@@ -15,7 +19,7 @@ const Products = () => {
   return (
     <section id="produtos" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
+        <div ref={titleRef} className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Nossos Serviços
           </h2>
@@ -25,7 +29,7 @@ const Products = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 animate-fade-in">
+          <Card ref={card1Ref} className={`overflow-hidden hover:shadow-lg transition-all duration-700 ${card1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="h-48 md:h-56 overflow-hidden bg-secondary">
               <img 
                 src={electricImage} 
@@ -65,7 +69,7 @@ const Products = () => {
             </CardContent>
           </Card>
 
-          <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 animate-fade-in flex flex-col" style={{ animationDelay: "0.2s" }}>
+          <Card ref={card2Ref} className={`overflow-hidden hover:shadow-lg transition-all duration-700 delay-200 flex flex-col ${card2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="h-48 md:h-56 overflow-hidden bg-secondary">
               <img 
                 src={manualImage} 

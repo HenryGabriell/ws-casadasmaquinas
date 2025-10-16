@@ -29,8 +29,8 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/80"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-24 md:py-28 relative z-10">
-        <div className="max-w-3xl animate-fade-in text-center md:text-left mx-auto md:mx-0 flex flex-col justify-center min-h-[60vh] md:min-h-0">
+      <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+        <div className="max-w-3xl animate-fade-in text-center md:text-left mx-auto md:mx-0 flex flex-col justify-center min-h-[50vh] md:min-h-0">
           <h1 className="text-[2.75rem] md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-8 md:mb-6">
             Manutenção Especializada em Máquinas para Vidros Automotivos
           </h1>
